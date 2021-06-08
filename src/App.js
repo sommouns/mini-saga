@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
+import action from './store/actions'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = (props) => {
+  return <React.Fragment>
+    <div>{props.number}</div>
+    <div>
+      <button onClick={props.add}>+</button>
     </div>
-  );
-}
-
-export default App;
+  </React.Fragment>;
+};
+const mapStateToProps = (state, ownProps) => {
+  return {
+    number: state.number,
+  };
+};
+export default connect(mapStateToProps, action)(App);
